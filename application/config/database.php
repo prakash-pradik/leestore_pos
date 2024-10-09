@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------
@@ -78,7 +78,7 @@ $db['default'] = array(
 	'hostname' => 'rds-leeadmin.c54uqy6k8zqs.us-east-1.rds.amazonaws.com',
 	'username' => 'admin',
 	'password' => 'sVDR(w8Q7LaP2',
-	'database' => 'leestore_pos',
+	'database' => 'leeadmin',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

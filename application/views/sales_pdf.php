@@ -1,15 +1,12 @@
+<?php ob_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Sales Print</title>
-    <style>
-       
+    <style>   
         header{
             margin-bottom:20px;
         }
@@ -42,7 +39,7 @@
             padding: 8px 0;
         }
         .invoice, .footer-sign{
-            background-image: url("http://[::1]/leestore/assets/img/lee_gray.png");
+            background-image: url("http://office.leestoreindia.com/assets/img/invoice/lee_gray.jpg");
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;   
@@ -50,10 +47,14 @@
         h5{
             color:#e67e22;
         }
+        .text-right{
+            text-align: right;
+        }
     </style>
 </head>
 
 <body>
+    <?php header("Content-type: image"); ?>
     <div class="container">
         <div class="card" style="padding-top:1rem;">
             <div class="card-body">
@@ -64,15 +65,15 @@
                                 <tr>
                                     <td>
                                         <a href="javascript:;">
-                                            <img src="http://[::1]/leestore/assets/img/lee_store.png" width="100" alt="">
+                                            <img src="http://office.leestoreindia.com/assets/img/invoice/logo.jpg" width="100" alt="">
                                         </a>
                                     </td>
                                     <td class="text-right">
-                                        <div># 4765/5, Ayyanarpuram 1st Street,</div>
-                                        <div>Alangudi Road, Pudukkottai,</div>
-                                        <div>+91- 99945 78802</div>
-                                        <div>+91- 96265 89922</div>
-                                        <div>info@leestoreindia.com</div>
+                                        <p># 4765/5, Ayyanarpuram 1st Street,</p>
+                                        <p>Alangudi Road, Pudukkottai,</p>
+                                        <p>+91- 99945 78802</p>
+                                        <p>+91- 96265 89922</p>
+                                        <p>info@leestoreindia.com</p>
                                     </td>
                                 </tr>
                             </table>
