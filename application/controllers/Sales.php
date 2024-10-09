@@ -55,7 +55,7 @@ class Sales extends CI_Controller {
 		$data['order_items'] = $this->admin_model->get_orders_item_id($id);
 		$this->load->view('config/template_start');
 		$this->load->view('config/page_head', $data);
-		$this->load->view('sales/invoice1', $data);
+		$this->load->view('sales/invoice', $data);
 		$this->load->view('config/page_footer');
 		$this->load->view('config/template_scripts');
 		$this->load->view('config/template_end');
@@ -75,34 +75,23 @@ class Sales extends CI_Controller {
 		//exit();
 		$mpdf = new \Mpdf\Mpdf([
             'format'=>'A4',
-            'margin_top'=>5,
-            'margin_right'=>5,
-            'margin_left'=>5,
-            'margin_bottom'=>5,
+            'margin_top'=>0,
+            'margin_right'=>0,
+            'margin_left'=>0,
+            'margin_bottom'=>-1,
         ]);
 		
 		$mpdf->WriteHTML($html);
-		$mpdf->Output('test.pdf', 'I');
-		 		
-	}
-
-	public function test_pdf(){
-		
-		$html = $this->load->view('sales/test_pdf', '', true);
-		$mpdf = new \Mpdf\Mpdf();
-
-		$mpdf->WriteHTML($html);
-		$mpdf->Output('test.pdf', 'I');
+		$mpdf->Output('test.pdf', 'I');	 		
 	}
 
 	/* public function test_pdf(){
-		
-		require_once(APPPATH.'third_party/tcpdf/tcpdf.php');
-		$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-		$pdf->AddPage();
-		$html = $this->load->view('sales/test_pdf', '', true);
-		$pdf->writeHTML('<head><link rel="stylesheet" type="text/css" href="http://localhost/Git_projects/leestore_billing/assets/css/print_pdf.css"></head>'. $html);
-		$pdf->Output('test.pdf', 'I');
+		$id = 1;
+		$today_dt = date('d-M-y h:ia');
+		$data['session_user'] = $this->session->userdata('admin_loggedin');
+		$data['order'] = $this->admin_model->get_order_by_id($id);
+		$data['order_items'] = $this->admin_model->get_orders_item_id($id);
+		$this->load->view('sales/invoice_pdf', $data);
 	} */
 
 	public function test(){

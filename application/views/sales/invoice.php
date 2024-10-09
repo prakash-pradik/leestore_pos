@@ -15,8 +15,7 @@
         <!-- Invoice Title -->
         <div class="block-title">
             <div class="block-options pull-right">
-                <!-- <a href="<?php echo base_url('sales/invoice_pdf/'.$order->id); ?>" class="btn btn-alt btn-info"><i class="fa fa-print"></i> Print</a> -->
-                <a href="#" class="btn btn-alt btn-info" onclick="printPdf();"><i class="fa fa-print"></i> Print</a>
+                <a href="<?php echo base_url('sales/invoice_pdf/'.$order->id); ?>" target="_blank" class="btn btn-alt btn-info"><i class="fa fa-print"></i> Print</a>
             </div>
             <h2><strong>Invoice</strong> #<?php echo $order->invoice_no; ?></h2>
         </div>
@@ -59,7 +58,7 @@
                             </table>
                         </div>
                     </div>
-                    <div class="col-sm-1"></div>
+                    
                     <div class="col-sm-4 company-details">
                         <table>
                             <tr rowspan="2">
@@ -105,9 +104,12 @@
                             </tr>
                         </table>
                     </div>
+                    <div class="col-sm-1"></div>
                 </div>
-                <br/><br/>
-                <div class="table-responsive descrip-block" style="background-image: url('http://localhost/Git_projects/leestore_billing/assets/img/invoice/tab_bg1.png')">
+                <table style="width:93%;">
+                <tr><td>
+                <div class="descrip-block">
+                    <img src="http://localhost/Git_projects/leestore_billing/assets/img/invoice/tab_bg1.png" alt="tab img" style="width:100%; height:630px">
                     <table class="table table-vcenter table-condensed table-borderless products_list">
                         <thead>
                             <tr>
@@ -188,8 +190,9 @@
                         </tbody>
                     </table>
                 </div>
-                <br/><br/>
-                <div class="table-responsive footer-block">
+                </td></tr>
+                </table>
+                <div class="footer-block">
                     <table>
                         <tr>
                             <td style="width:60%">
