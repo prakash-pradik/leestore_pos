@@ -93,7 +93,8 @@
     color: #000;
 }
 
-.nav-horizontal li .bg-success {
+.nav-horizontal li .bg-success,
+.nav-horizontal li .bg-success:hover {
     background-color: #daf2e4;
 }
 
@@ -101,7 +102,8 @@
     color: #27ae60
 }
 
-.nav-horizontal li .bg-warning {
+.nav-horizontal li .bg-warning,
+.nav-horizontal li .bg-warning:hover {
     background-color: #ffe4cc;
 }
 
@@ -109,7 +111,8 @@
     color: #e67e22;
 }
 
-.nav-horizontal li .bg-info {
+.nav-horizontal li .bg-info,
+.nav-horizontal li .bg-info:hover {
     background-color: #dae8f2;
 }
 
@@ -117,7 +120,8 @@
     color: #3498db;
 }
 
-.nav-horizontal li .bg-amethyst {
+.nav-horizontal li .bg-amethyst,
+.nav-horizontal li .bg-amethyst:hover {
     background-color: #eccdf7;
 }
 

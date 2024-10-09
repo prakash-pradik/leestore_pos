@@ -281,5 +281,30 @@ class Admin_model extends CI_Model{
             return false;
     }
 
+    public function get_top_customers(){
+        $sql = "SELECT cus.*,
+                (SELECT sum(total_paid) FROM orders WHERE customer_id = cus.id) as order_total,
+                (SELECT count(id) FROM orders WHERE customer_id = cus.id) as order_count
+                FROM `customers` as cus WHERE cus.status = '1' GROUP BY cus.id ORDER BY order_total desc LIMIT 10 ";
+        $query = $this->db->query($sql);
+
+        if($query->num_rows() > 0 )
+            return $query->result_array();
+        else
+            return false;
+    }
+    public function get_top_products(){
+        $sql = "SELECT prod.*,
+                (SELECT sum(sub_total) FROM order_items WHERE product_id = prod.id) as order_total,
+                (SELECT sum(quantity) FROM order_items WHERE product_id = prod.id) as order_count
+                FROM `products` as prod  GROUP BY prod.id ORDER BY order_total desc LIMIT 10 ";
+        $query = $this->db->query($sql);
+
+        if($query->num_rows() > 0 )
+            return $query->result_array();
+        else
+            return false;
+    }
+
 }
 ?>

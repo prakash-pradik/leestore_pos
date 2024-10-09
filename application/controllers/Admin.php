@@ -26,6 +26,9 @@ class Admin extends CI_Controller {
 		$data['session_user'] = $this->session->userdata('admin_loggedin');
 		$data['users'] = $this->admin_model->get_data('customers', array('status'=>'1'), 'result_array');
 		$data['employees'] = $this->admin_model->get_data('employees', array('status'=>'1'), 'result_array');
+
+		$data['customers'] = $this->admin_model->get_top_customers();
+		$data['products'] = $this->admin_model->get_top_products();
 		$this->load->view('config/template_start');
 		$this->load->view('config/page_head',$data);
 		$this->load->view('index', $data);

@@ -20,6 +20,19 @@ class Login extends CI_Controller {
 			redirect(base_url('dashboard'));
 		}
 		else{
+			$this->load->view('login_full');
+		}
+	}
+
+	public function login2()
+	{
+		$this->load->library('session');
+
+		//restrict users to go back to login if session has been set
+		if($this->session->userdata('admin_loggedin')){
+			redirect(base_url('dashboard'));
+		}
+		else{
 			$this->load->view('login_page');
 		}
 	}

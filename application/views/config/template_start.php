@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
 
-        <title>Lee Store Billing</title>
+        <title>Lee Store - POS</title>
 
         <meta name="description" content="Lee Store Admin Panel">
         <meta name="author" content="Prakash Freddie">
