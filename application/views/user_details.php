@@ -98,7 +98,7 @@
                                 foreach($emp_advance as $adv){
                             ?>
                             <tr>
-                                <td class="text-center" style="width: 10%;"><?php echo $i; ?></td>
+                                <td class="text-center" style="width: 10%;"><?php echo str_pad($i, 2, '0', STR_PAD_LEFT); ?></td>
                                 <td style="width: 30%;"><?php if(!empty($user)) echo $user->name.' Advance'; ?></td>
                                 <td class="text-right"><strong class="<?php if($adv['amount_type'] == 'DEB') echo 'text-success'; else echo 'text-danger'; ?>">₹ <?php echo $adv['amount']; ?></strong></td>
                                 <td><?php echo date('d-m-Y h:i a', strtotime($adv['date_added'])); ?></td>
