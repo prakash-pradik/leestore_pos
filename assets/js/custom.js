@@ -77,6 +77,10 @@ function fetchCatDetails(mythis) {
         data: { id: id, tbl_name: 'categories' },
         dataType: "json",
         success: function (res) {
+
+            $("#category_update_block").show();
+            $("#category_new_block").hide();
+
             $('.category_id').val(res.id);
             $('.category_store').val(res.store_id);
             $('.category_name').val(res.category_name);
@@ -124,6 +128,10 @@ function deleteCatData(mythis) {
 function fetchBrandDetails(mythis) {
     $('.brand_id').val($(mythis).data('id'));
     $('.brand_name').val($(mythis).data('name'));
+    $('.brand_store').val($(mythis).data('storeid'));
+
+    $("#brand_update_block").show();
+    $("#brand_new_block").hide();
 }
 
 function deleteBrandData(mythis) {
@@ -439,6 +447,25 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+
+function showCategoryForm(show) {
+    if (show) {
+        $("#category_update_block").hide();
+        $("#category_new_block").show();
+    } else {
+        $("#category_new_block, #category_update_block").hide();
+    }
+}
+
+function showBrandForm(show) {
+    if (show) {
+        $("#brand_update_block").hide();
+        $("#brand_new_block").show();
+    } else {
+        $("#brand_new_block, #brand_update_block").hide();
+    }
+}
+
 function showRoleForm(show) {
     if (show) {
         $("#role_update_block").hide();
@@ -446,7 +473,6 @@ function showRoleForm(show) {
     } else {
         $("#role_new_block, #role_update_block").hide();
     }
-
 }
 
 function fetchRoleDetails(mythis) {
@@ -489,6 +515,25 @@ function deleteRoleData(mythis) {
                     }, 3000);
                 }
             });
+        }
+    });
+}
+
+function updatePassword() {
+    var passwrd = $("#user_password").val();
+    $.ajax({
+        url: base_url + 'admin/update_password',
+        type: 'post',
+        data: { password: passwrd },
+        dataType: "json",
+        success: function (res) {
+
+            if (res.status == 200) {
+                alertify.success(res.message);
+            } else {
+                alertify.error(res.message);
+            }
+
         }
     });
 }

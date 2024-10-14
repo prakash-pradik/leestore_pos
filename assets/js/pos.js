@@ -233,16 +233,20 @@ function deleteFunc(id) {
 
 function fetchNetAmt() {
     var netAmount = 0;
+    var quantity = 0;
 
     if (prodObj.length !== 0) {
         $.each(prodObj, function (key, value) {
             netAmount = parseInt(netAmount) + parseInt((value.unitPrice * value.quantity));
+            quantity = parseInt(quantity) + parseInt(value.quantity);
         });
     } else {
         $("#net_discount").val('');
+        $("#total_quantity").val('');
     }
     $("#gross_amount").val(netAmount);
     $("#total_payable").val(netAmount);
+    $("#total_quantity").val(quantity);
 
     netAmount = netAmount.toFixed(2);
 
@@ -261,6 +265,7 @@ function saveCash(saleType) {
     var discountAmount = $("#discount_amount").val();
     var grossVal = $("#gross_amount").val();
     var totalPayable = $('#total_payable').val();
+    var totalQty = $('#total_quantity').val();
 
     if (customerId == 0) {
         alertify.error("Please select the customer!");
@@ -283,6 +288,7 @@ function saveCash(saleType) {
             discountVal: discountVal,
             discountAmount: discountAmount,
             totalPayable: totalPayable,
+            totalQty: totalQty,
             data: prodObj
         },
         dataType: 'json',

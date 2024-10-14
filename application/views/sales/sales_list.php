@@ -97,6 +97,7 @@
                         <th>Customer Name</th>
                         <th>Customer Phone</th>
                         <th>Net Amount(₹)</th>
+                        <th class="text-center">Qty</th>
                         <th>Status</th>
                         <th>Date</th>
                         <th class="text-center">Actions</th>
@@ -124,6 +125,7 @@
                         </td>
                         <td class="text-capitalize">+91-<?php echo $order['customer_phone']; ?></td>
                         <td class="text-capitalize"><?php echo '₹ '.number_format($order['net_amount'],2); ?></td>
+                        <td class="text-center"><?php echo $order['quantity']; ?></td>
                         <td class="text-capitalize"><?php echo $orderStatus; ?></td>
                         <td class="text-capitalize"><?php echo date('d-m-Y', strtotime($order['order_date'])); ?></td>
                         <td class="text-center">

@@ -68,10 +68,19 @@ class Admin_model extends CI_Model{
     }
 
     public function get_all_products(){
+
+        $sessionUser = $this->session->userdata('admin_loggedin');
+        if(isset($sessionUser['store_id']) && $sessionUser['store_id']){
+            $storeWhere = "AND prod.store_id = ".$sessionUser['store_id']."";
+        }
+        else{
+            $storeWhere = "";
+        }
+
         $sql = "SELECT prod.*, 
         (SELECT category_name FROM categories WHERE id = prod.category_id) as category_name, 
         (SELECT brand_name FROM brands WHERE id = prod.brand_id) as brand_name 
-        FROM `products` as prod WHERE status = '1' order by id desc";
+        FROM `products` as prod WHERE status = '1' $storeWhere order by id desc";
         $query = $this->db->query($sql);
 
         if($query->num_rows() > 0 )
@@ -334,10 +343,17 @@ class Admin_model extends CI_Model{
             return false;
     }
     public function get_top_products(){
+
+        $sessionUser = $this->session->userdata('admin_loggedin');
+        if(isset($sessionUser['store_id']) && $sessionUser['store_id'])
+            $storeWhere = "prod.store_id = ".$sessionUser['store_id']."";
+        else
+            $storeWhere = "1=1";
+
         $sql = "SELECT prod.*,
                 (SELECT sum(sub_total) FROM order_items WHERE product_id = prod.id) as order_total,
                 (SELECT sum(quantity) FROM order_items WHERE product_id = prod.id) as order_count
-                FROM `products` as prod  GROUP BY prod.id HAVING order_count > 0 ORDER BY order_count desc LIMIT 10 ";
+                FROM `products` as prod WHERE $storeWhere GROUP BY prod.id HAVING order_count > 0 ORDER BY order_count desc LIMIT 10 ";
         $query = $this->db->query($sql);
 
         if($query->num_rows() > 0 )

@@ -28,7 +28,6 @@ class Login extends CI_Controller {
 	{
 		$this->load->library('session');
 
-		//restrict users to go back to login if session has been set
 		if($this->session->userdata('admin_loggedin')){
 			redirect(base_url('dashboard'));
 		}
@@ -55,7 +54,12 @@ class Login extends CI_Controller {
 			$staffData = $this->login_model->login_staff($email, $password);
 			if($staffData){
 				$this->session->set_userdata('admin_loggedin', $staffData);
-				redirect(base_url('sales_list/month'));
+				
+				if($staffData['role_type'] === 'Manager'){
+					redirect(base_url('dashboard'));
+				} else{
+					redirect(base_url('sales_list/month'));
+				}
 			}
 			else{
 				$this->session->set_flashdata('message', 'In-Correct username or password');

@@ -134,6 +134,7 @@
                         </div>
                     </div>
                     <!------ Price Block ----->
+                    <input type="hidden" id="total_quantity" value="">
                     <div class="block net-amount-block">
                         <div class="form-group">
                             <label class="col-md-5 control-label">Discount :</label>

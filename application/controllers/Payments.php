@@ -69,6 +69,7 @@ class Payments extends CI_Controller {
 
 		$grossVal = $this->input->post('grossVal');
 		$netAmount = $this->input->post('totalPayable');
+		$totalQty = $this->input->post('totalQty');
 		$discountVal = $this->input->post('discountVal');
 		$discountAmount = $this->input->post('discountAmount');
 		$data = $this->input->post('data');
@@ -98,7 +99,8 @@ class Payments extends CI_Controller {
 			'discount_amount' => $discountAmount,
 			'net_amount' => $netAmount,
 			'total_paid' => $totalPaid,
-			'order_date' => date("Y-m-d H:i:s" , strtotime($this->input->post('billDate'))),
+			'quantity' => $totalQty,
+			'order_date' => date("Y-m-d" , strtotime($this->input->post('billDate'))),
 			'order_status' => $orderStatus,
 			'payment_mode' => $payMode,
 			'date_added' => date("Y-m-d H:i:s")
@@ -242,18 +244,6 @@ class Payments extends CI_Controller {
 
 	}
 
-	public function jsonResponse($status, $statusType, $msg, $resData){
-
-		$response = array(
-			'status' => $status,
-			'statusType' => $statusType,
-			'message' => $msg,
-			'data' => $resData
-		);
-		echo json_encode($response);
-		return;
-	}
-
 	public function pos_update($id)
 	{
 		$data['session_user'] = $sessionUser = $this->session->userdata('admin_loggedin');
@@ -275,6 +265,18 @@ class Payments extends CI_Controller {
 		$this->load->view('config/page_footer', $data);
 		$this->load->view('config/template_scripts');
 		$this->load->view('config/template_end');
+	}
+
+	public function jsonResponse($status, $statusType, $msg, $resData){
+
+		$response = array(
+			'status' => $status,
+			'statusType' => $statusType,
+			'message' => $msg,
+			'data' => $resData
+		);
+		echo json_encode($response);
+		return;
 	}
 
 }

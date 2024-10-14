@@ -32,7 +32,7 @@ class Admin extends CI_Controller {
 		$data['products'] = $this->admin_model->get_top_products();
 		$this->load->view('config/template_start');
 		$this->load->view('config/page_head',$data);
-		$this->load->view('index', $data);
+		$this->load->view('dashboard', $data);
 		$this->load->view('config/page_footer');
 		$this->load->view('config/template_scripts');
 		$this->load->view('config/template_end');
@@ -140,5 +140,36 @@ class Admin extends CI_Controller {
 			$this->session->set_flashdata('message', 'Data Successfully Updated..!');
 			redirect(base_url('supplier/'.$supplierId));
 		}
+	}
+
+	public function update_password(){
+		
+		$sessionUser = $this->session->userdata('admin_loggedin');
+		$user_id = $sessionUser['id'];
+		$data = array(
+			'password' => $this->input->post('password')
+		);
+
+		$where = array('id' => $user_id );
+		$update = $this->admin_model->update_row_data('admin', $where, $data);
+
+		if($update){
+			$this->jsonResponse(200, 'success', 'Password Successfully Updated!', '');
+		} else {
+			$this->jsonResponse(500, 'failed', 'Something Went Wrong!', '');
+		}
+		echo json_encode($data);
+	}
+
+	public function jsonResponse($status, $statusType, $msg, $resData){
+
+		$response = array(
+			'status' => $status,
+			'statusType' => $statusType,
+			'message' => $msg,
+			'data' => $resData
+		);
+		echo json_encode($response);
+		return;
 	}
 }

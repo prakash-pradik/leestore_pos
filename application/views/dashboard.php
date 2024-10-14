@@ -20,6 +20,7 @@
 
 
     <!-- eShop Overview Block -->
+    <?php if(!empty($session_user) && ($session_user['role_type'] === 'super_admin')) { ?>
     <div class="row">
         <div class="col-md-4 col-lg-5">
             <div class="block">
@@ -122,6 +123,7 @@
             </div>
         </div>
     </div>
+    <?php } ?>
     <!-- END eShop Overview Block -->
     
     <div class="row">
@@ -166,8 +168,7 @@
             <div class="block">
                 <div class="block-title">
                     <div class="block-options pull-right">
-                        <a href="page_ecom_products.php" class="btn btn-alt btn-sm btn-default" data-toggle="tooltip" title="Show All"><i class="fa fa-eye"></i></a>
-                        <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-default" data-toggle="tooltip" title="Settings"><i class="fa fa-cog"></i></a>
+                        <a href="<?php echo base_url('products_list'); ?>" class="btn btn-alt btn-sm btn-default" data-toggle="tooltip" title="Show All"><i class="fa fa-eye"></i></a>
                     </div>
                     <h2><strong>Top 10</strong> Products</h2>
                 </div>

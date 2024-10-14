@@ -15,8 +15,7 @@
         <!-- Invoice Title -->
         <div class="block-title">
             <div class="block-options pull-right">
-                <!-- <a href="<?php echo base_url('sales/invoice_pdf/'.$order->id); ?>" class="btn btn-alt btn-info"><i class="fa fa-print"></i> Print</a> -->
-                <a href="javascript:void(0);" class="btn btn-alt btn-info" onclick="printPdf();"><i class="fa fa-print"></i> Print</a>
+                <a href="<?php echo base_url('sales/invoice_pdf/'.$order->id); ?>" target="_blank" class="btn btn-alt btn-info"><i class="fa fa-print"></i> Print</a>
             </div>
             <h2><strong>Invoice</strong> #<?php echo $order->invoice_no; ?></h2>
         </div>
@@ -123,7 +122,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if(!empty($order_items)) {
+                            <?php 
+                            $count = 0;
+                            if(!empty($order_items)) {
                                 $count = count($order_items);
                                 $i = 1;  $quantity = 0;
                                 foreach($order_items as $items){
@@ -139,8 +140,8 @@
                                 <td class="text-center"><?php echo number_format($items['price']); ?></td>
                                 <td class="text-right"><strong><?php echo number_format($items['sub_total'],2); ?></strong></td>
                             </tr>
-                            <?php $i++; 
-                            $quantity = $quantity + $items['quantity'];
+                            <?php   $i++; 
+                                    $quantity = $quantity + $items['quantity'];
                                     } 
                                 } 
                             ?>
@@ -176,7 +177,7 @@
                                     </div>
                                 </td>
                                 <td class="text-center"> 
-                                    <strong><?php echo $quantity; ?></strong>
+                                    <strong><?php echo $order->quantity; ?></strong>
                                 </td>
                                 <td>
                                     <h4>CSGT : 9%</h4>

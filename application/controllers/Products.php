@@ -168,9 +168,15 @@ class Products extends CI_Controller {
 
 	public function categories()
 	{
-		$data['session_user'] = $this->session->userdata('admin_loggedin');
+		$data['session_user'] = $sessionUser = $this->session->userdata('admin_loggedin');
+
+		if(isset($sessionUser) && $sessionUser['role_type'] === 'Manager')
+			$where = array('store_id' => $sessionUser['id'], 'status'=>'1');
+		else
+			$where = array('status'=>'1');
+
 		$data['stores'] = $this->admin_model->get_data('stores', array('status'=>'1'), 'result_array');
-		$data['categories'] = $this->admin_model->get_data('categories', array('status'=>'1'), 'result_array', 'id', 'desc');
+		$data['categories'] = $this->admin_model->get_data('categories', $where, 'result_array', 'id', 'desc');
 		$this->load->view('config/template_start');
 		$this->load->view('config/page_head',$data);
 		$this->load->view('products/categories', $data);
@@ -214,8 +220,14 @@ class Products extends CI_Controller {
 	
 	public function brands()
 	{
-		$data['session_user'] = $this->session->userdata('admin_loggedin');
-		$data['brands'] = $this->admin_model->get_data('brands', array('status'=>'1'), 'result_array', 'id', 'desc');
+		$data['session_user'] = $sessionUser = $this->session->userdata('admin_loggedin');
+		if(isset($sessionUser) && $sessionUser['role_type'] === 'Manager')
+			$where = array('store_id' => $sessionUser['id'], 'status'=>'1');
+		else
+			$where = array('status'=>'1');
+
+		$data['stores'] = $this->admin_model->get_data('stores', array('status'=>'1'), 'result_array');
+		$data['brands'] = $this->admin_model->get_data('brands', $where, 'result_array', 'id', 'desc');
 		$this->load->view('config/template_start');
 		$this->load->view('config/page_head',$data);
 		$this->load->view('products/brands', $data);
@@ -226,6 +238,7 @@ class Products extends CI_Controller {
 	public function insert_brand(){
 
 		$data = array(
+			'store_id' => $this->input->post('brand_store'),
 			'brand_name' => $this->input->post('brand_name'),
 			'date_added' => date("Y-m-d H:i:s")
 		);
@@ -239,6 +252,7 @@ class Products extends CI_Controller {
 	public function update_brand(){
 		$id = $this->input->post('brand_id');
 		$data = array(
+			'store_id' => $this->input->post('brand_store'),
 			'brand_name' => $this->input->post('brand_name'),
 			'date_modified' => date("Y-m-d H:i:s")
 		);
@@ -329,20 +343,6 @@ class Products extends CI_Controller {
 		return;
 	}
 
-	public function product_test()
-	{
-		$data['session_user'] =  $sessionUser = $this->session->userdata('admin_loggedin');
-		$data['stores'] = $this->admin_model->get_data('stores', array('status'=>'1'), 'result_array');
-		$data['products'] = $this->admin_model->get_all_products();
-		$data['categories'] = $this->admin_model->get_data('categories', array('status'=>'1'), 'result_array', 'category_name', 'asc');
-		$data['brands'] = $this->admin_model->get_data('brands', array('status'=>'1'), 'result_array', 'brand_name', 'asc');
-		$this->load->view('config/template_start');
-		$this->load->view('config/page_head',$data);
-		$this->load->view('products/product_test', $data);
-		$this->load->view('config/page_footer');
-		$this->load->view('config/template_scripts');
-		$this->load->view('config/template_end');
-	}
 	public function insert_product_test(){
 
 		$data = array(

@@ -20,19 +20,24 @@
                         <h2><strong>Product</strong> Details</h2>
                     </div>
                         <input type="hidden" name="product_id" id="product_id" value="<?php echo $product->id; ?>">
+                        <?php 
+                            $storeId = $selected = $disabled = '';
+                            if(isset($session_user) && $session_user['role_type'] === 'Manager'){
+                                $storeId = $session_user['store_id'];
+                                $disabled = 'disabled';
+                            } 
+                        ?>
                         <div class="row" style="margin:0px;">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Store<span class="text-danger">*</span></label>
-                                    <select id="" name="product_store" class="form-control">
+                                    <select id="" name="product_store" class="form-control" <?php echo $disabled; ?>>
                                         <option value="">Please select</option>
                                         <?php if(!empty($stores)) {
                                             $i = 1; 
                                             foreach($stores as $store){
                                                 if($store['id'] == $product->store_id)
                                                     $selected = 'selected';
-                                                else
-                                                    $selected = '';
                                         ?>
                                             <option value="<?php echo $store['id']; ?>" <?php echo $selected; ?>><?php echo $store['store_name']; ?></option>
                                         <?php } } ?>

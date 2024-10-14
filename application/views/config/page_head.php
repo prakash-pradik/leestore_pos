@@ -20,7 +20,7 @@
                         <!-- Sidebar Content -->
                         <div class="sidebar-content">
                             <!-- Brand -->
-                            <a href="<?php echo base_url('admin'); ?>" class="sidebar-brand" style="display:flex; justify-content:center;">
+                            <a href="javascript:void(0);" class="sidebar-brand" style="display:flex; justify-content:center;">
                                 <img src="<?php echo base_url(IMG); ?>/logo.png" style="padding: 3px 0px;"><!-- <span class="sidebar-nav-mini-hide"><strong>Lee</strong> Store</span> -->
                             </a>
                             <!-- END Brand -->
@@ -45,12 +45,12 @@
                             <!-- Sidebar Navigation -->
                             <ul class="sidebar-nav">
 
-                                <?php if(!empty($session_user) && $session_user['role_type'] === 'super_admin') { ?>
+                                <?php if(!empty($session_user) && ($session_user['role_type'] === 'super_admin' || $session_user['role_type'] === 'Manager')) { ?>
                                 
                                 <li>
                                     <a href="<?php echo base_url('dashboard'); ?>" class="<?php if($this->uri->segment(1) == 'dashboard') echo 'active'; ?>"><i class="gi gi-home sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Dashboard</span></a>
                                 </li>
-                                
+                                <?php if($session_user['role_type'] === 'super_admin') { ?>
                                 <li>
                                     <a href="<?php echo base_url('stores'); ?>" class="<?php if($this->uri->segment(1) == 'stores') echo 'active'; ?>"><i class="gi gi-shop sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide"> Stores List</span></a>
                                 </li>
@@ -66,6 +66,7 @@
                                         </li>
                                     </ul>
                                 </li>
+                                <?php } ?>
                                 <li>
                                     <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-cargo sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Product Manage</span></a>
                                     <ul>
@@ -164,7 +165,7 @@
                                     <li class="divider"></li>
                                     <?php } ?>
                                     <li>
-                                        <a href="<?php echo base_url('logout') ?>"><i class="fa fa-ban fa-fw pull-right"></i> Logout</a>
+                                        <a href="<?php echo base_url('logout') ?>"><i class="gi gi-exit fa-fw pull-right"></i> Logout</a>
                                     </li>                                    
                                 </ul>
                             </li>

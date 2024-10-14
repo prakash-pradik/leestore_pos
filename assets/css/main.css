@@ -2633,13 +2633,14 @@ a.list-group-item.active>.badge {
 }
 
 .dropdown-menu i {
-    opacity: 0.2;
+    /*opacity: 0.2;*/
+    opacity: 1;
     line-height: 17px;
 }
 
-.dropdown-menu a:hover i {
+/*.dropdown-menu a:hover i {
     opacity: 0.5;
-}
+}*.
 
 .dropdown-menu .divider {
     margin: 2px 0;

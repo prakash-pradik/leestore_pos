@@ -180,12 +180,16 @@ var FormsValidation = function () {
                     e.closest('.help-block').remove();
                 },
                 rules: {
+                    brand_store: {
+                        required: true
+                    },
                     brand_name: {
                         required: true,
                         minlength: 3
                     }
                 },
                 messages: {
+                    brand_store: 'Please select the store.!',
                     brand_name: {
                         required: 'Please enter a name.!',
                         minlength: 'Name must contain at least 3 characters.!'
@@ -209,12 +213,16 @@ var FormsValidation = function () {
                     e.closest('.help-block').remove();
                 },
                 rules: {
+                    brand_store: {
+                        required: true
+                    },
                     brand_name: {
                         required: true,
                         minlength: 3
                     }
                 },
                 messages: {
+                    brand_store: 'Please select the store.!',
                     brand_name: {
                         required: 'Please enter a name.!',
                         minlength: 'Name must contain at least 3 characters.!'
@@ -773,7 +781,6 @@ var FormsValidation = function () {
                     sell_price: 'Please enter selling price.!'
                 },
                 submitHandler: function (form) {
-                    //console.log(form);
                     addProduct();
                 }
             });
@@ -831,6 +838,46 @@ var FormsValidation = function () {
                         required: 'Please enter a name.!',
                         minlength: 'Name must contain at least 3 characters.!'
                     }
+                }
+            });
+
+            $('#update-password').validate({
+                errorClass: 'help-block animation-slideDown',
+                errorElement: 'div',
+                errorPlacement: function (error, e) {
+                    e.parents('.form-group > div').append(error);
+                },
+                highlight: function (e) {
+                    $(e).closest('.form-group').removeClass('has-success has-error').addClass('has-error');
+                    $(e).closest('.help-block').remove();
+                },
+                success: function (e) {
+                    e.closest('.form-group').removeClass('has-success has-error'); // e.closest('.form-group').removeClass('has-success has-error').addClass('has-success');
+                    e.closest('.help-block').remove();
+                },
+                rules: {
+                    user_password: {
+                        required: true,
+                        minlength: 5
+                    },
+                    user_confirm_password: {
+                        required: true,
+                        equalTo: '#user_password'
+                    }
+                },
+                messages: {
+                    user_password: {
+                        required: 'Please provide a password.!',
+                        minlength: 'Your password must be at least 5 characters long.!'
+                    },
+                    user_confirm_password: {
+                        required: 'Please provide a password.!',
+                        minlength: 'Your password must be at least 5 characters long.!',
+                        equalTo: 'Please enter the same password as above.!'
+                    }
+                },
+                submitHandler: function (form) {
+                    updatePassword();
                 }
             });
             // Initialize Masked Inputs

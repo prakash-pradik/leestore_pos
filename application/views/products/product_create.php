@@ -18,18 +18,27 @@
                     <div class="block-title">
                         <h2><strong>Product</strong> Details</h2>
                     </div>
-                    
+                        <?php 
+                            $storeId = $selected = $disabled = '';
+                            if(isset($session_user) && $session_user['role_type'] === 'Manager'){
+                                $storeId = $session_user['store_id'];
+                                $disabled = 'disabled';
+                            } 
+                        ?>
                         <div class="row" style="margin:0px;">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Store<span class="text-danger">*</span></label>
-                                    <select id="new_product_store" name="product_store" class="form-control">
+                                    <select id="new_product_store" name="product_store" class="form-control" <?php echo $disabled; ?>>
                                         <option value="">Please select</option>
                                         <?php if(!empty($stores)) {
                                             $i = 1; 
                                             foreach($stores as $store){
+
+                                                if($store['id'] == $storeId)
+                                                    $selected = 'selected';
                                         ?>
-                                            <option value="<?php echo $store['id']; ?>"><?php echo $store['store_name']; ?></option>
+                                            <option value="<?php echo $store['id']; ?>" <?php echo $selected; ?> ><?php echo $store['store_name']; ?></option>
                                         <?php } } ?>
                                     </select>
                                 </div>

@@ -27,28 +27,20 @@
 
                     <!-- Modal Body -->
                     <div class="modal-body">
-                        <form action="index.html" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" onsubmit="return false;">
-                            <fieldset>
-                                <legend>User Info</legend>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">Username</label>
-                                    <div class="col-md-8">
-                                        <p class="form-control-static">Admin</p>
-                                    </div>
-                                </div>
-                            </fieldset>
+                        <form action="javascript:void(0);" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" id="update-password">
+                
                             <fieldset>
                                 <legend>Password Update</legend>
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label" for="user-settings-password">New Password</label>
+                                    <label class="col-md-4 control-label" for="user_password">New Password</label>
                                     <div class="col-md-8">
-                                        <input type="password" id="user-settings-password" name="user-settings-password" class="form-control" placeholder="Please choose a complex one..">
+                                        <input type="password" id="user_password" name="user_password" class="form-control" placeholder="Please choose a complex one..">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label" for="user-settings-repassword">Confirm New Password</label>
+                                    <label class="col-md-4 control-label" for="user_confirm_password">Confirm New Password</label>
                                     <div class="col-md-8">
-                                        <input type="password" id="user-settings-repassword" name="user-settings-repassword" class="form-control" placeholder="..and confirm it!">
+                                        <input type="password" id="user_confirm_password" name="user_confirm_password" class="form-control" placeholder="..and confirm it!">
                                     </div>
                                 </div>
                             </fieldset>
@@ -66,58 +58,6 @@
         </div>
         <!-- END User Settings -->
 
-<div id="modal-new-category" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header text-center bg-success">
-                <h2 class="modal-title"><i class="fa fa-plus"></i> Add New Category</h2>
-            </div>
-            <!-- END Modal Header -->
-
-            <!-- Modal Body -->
-            <div class="modal-body">
-                <form action="<?php echo base_url('insert_category'); ?>" id="category-validation" method="post" class="form-horizontal form-bordered" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">Store <span class="text-danger">*</span></label>
-                        <div class="col-md-8">
-                            <select id="" name="category_store" class="form-control">
-                                <option value="">Please select</option>
-                                <?php if(!empty($stores)) {
-                                    $i = 1; 
-                                    foreach($stores as $store){
-                                ?>
-                                    <option value="<?php echo $store['id']; ?>"><?php echo $store['store_name']; ?></option>
-                                <?php } } ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">Category Name <span class="text-danger">*</span></label>
-                        <div class="col-md-8">
-                            <input type="text" id="category_name" name="category_name" class="form-control" placeholder="Name..">
-                        </div>
-                    </div>
-					
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">Details</label>
-                        <div class="col-md-8">
-                            <textarea id="category_details" name="category_details" rows="4" class="form-control" placeholder="Tell us details.."></textarea>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group form-actions">
-                        <div class="col-xs-12 text-right">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-success">Save</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <!-- END Modal Body -->
-        </div>
-    </div>
-</div>
 
 <div id="modal-update-category" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
@@ -130,105 +70,7 @@
 
             <!-- Modal Body -->
             <div class="modal-body">
-                <form action="<?php echo base_url('update_category'); ?>" id="category-update-validation" method="post" class="form-horizontal form-bordered" enctype="multipart/form-data">
-                    <input type="hidden" class="category_id" name="category_id" value="">
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">Store <span class="text-danger">*</span></label>
-                        <div class="col-md-8">
-                            <select id="" name="category_store" class="form-control category_store">
-                                <option value="">Please select</option>
-                                <?php if(!empty($stores)) {
-                                    $i = 1; 
-                                    foreach($stores as $store){
-                                ?>
-                                    <option value="<?php echo $store['id']; ?>"><?php echo $store['store_name']; ?></option>
-                                <?php } } ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">Category Name <span class="text-danger">*</span></label>
-                        <div class="col-md-8">
-                            <input type="text" id="update_category_name" name="category_name" class="form-control category_name" placeholder="Name..">
-                        </div>
-                    </div>
-					
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">Details</label>
-                        <div class="col-md-8">
-                            <textarea id="update_category_details" name="category_details" rows="4" class="form-control category_details" placeholder="Tell us details.."></textarea>
-                        </div>
-                    </div>
-
-                    <div class="form-group form-actions">
-                        <div class="col-xs-12 text-right">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-info">Update</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <!-- END Modal Body -->
-        </div>
-    </div>
-</div>
-
-<div id="modal-new-brand" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header text-center bg-success">
-                <h2 class="modal-title"><i class="fa fa-plus"></i> Add New Brand</h2>
-            </div>
-            <!-- END Modal Header -->
-            <!-- Modal Body -->
-            <div class="modal-body">
-                <form action="<?php echo base_url('insert_brand'); ?>" id="brand-validation" method="post" class="form-horizontal form-bordered" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">Brand Name</label>
-                        <div class="col-md-8">
-                            <input type="text" id="brand_name" name="brand_name" class="form-control" placeholder="Name..">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group form-actions">
-                        <div class="col-xs-12 text-right">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-success">Save</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <!-- END Modal Body -->
-        </div>
-    </div>
-</div>
-<div id="modal-update-brand" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header text-center bg-info">
-                <h2 class="modal-title"><i class="fa fa-pencil"></i> Update Brand</h2>
-            </div>
-            <!-- END Modal Header -->
-            <!-- Modal Body -->
-            <div class="modal-body">
-                <form action="<?php echo base_url('update_brand'); ?>" id="brand-update-validation" method="post" class="form-horizontal form-bordered" enctype="multipart/form-data">
-                <input type="hidden" class="brand_id" name="brand_id" value="">
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">Brand Name</label>
-                        <div class="col-md-8">
-                            <input type="text" id="" name="brand_name" class="form-control brand_name" placeholder="Name..">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group form-actions">
-                        <div class="col-xs-12 text-right">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-info">Update</button>
-                        </div>
-                    </div>
-                </form>
+                
             </div>
             <!-- END Modal Body -->
         </div>

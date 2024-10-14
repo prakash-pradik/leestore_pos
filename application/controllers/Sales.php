@@ -55,7 +55,7 @@ class Sales extends CI_Controller {
 		$data['order_items'] = $this->admin_model->get_orders_item_id($id);
 		$this->load->view('config/template_start');
 		$this->load->view('config/page_head', $data);
-		$this->load->view('sales/invoice', $data);
+		$this->load->view('sales/invoice_view', $data);
 		$this->load->view('config/page_footer');
 		$this->load->view('config/template_scripts');
 		$this->load->view('config/template_end');
